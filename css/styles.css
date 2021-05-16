@@ -1,0 +1,28 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+body {
+  color: #fff;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background:   linear-gradient(
+    rgba(0, 0, 0, .88), 
+    rgba(0, 0, 0, .97)
+  ), url('../images/earth.jpg');
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+.container {
+  padding: 40px 100px;
+  max-width: 1480px;
+
+}
+
+
