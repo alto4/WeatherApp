@@ -3,35 +3,40 @@
 const img = document.querySelector('img');
 const searchBar = document.querySelector('[name=search]');
 const weatherContainer = document.querySelector('.weather-container');
+const submitButton = document.querySelector('.btn-submit');
+const navbar = document.querySelector('nav');
 
 console.log("Let's try a request targetting " + img + ': ');
 
 async function getWeather(city) {
-  const res = await fetch(
-    `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=e89da154536fd30ccf31b6e56206ca6e`
-  );
-  const data = await res.json();
+  try {
+    const res = await fetch(
+      `http://api.openweathermap.org/data/2.5/weather?q=${city}&cnt=7&APPID=e89da154536fd30ccf31b6e56206ca6e`
+    );
+    const data = await res.json();
 
-  if (data) {
-    // img.src = gifData.data.images.original.url;
-    console.log("Here's your data: " + data.weather);
-    console.table(data);
-    console.table(data.weather);
-    console.log(data.name);
+    console.log(data);
+    if (data.cod === 200) {
+      let cityHeading = document.querySelector('.city-name');
+      cityHeading.innerText = '';
 
-    let cityHeading = document.createElement('h1');
-
-    if (data.name) {
-      weatherContainer.innerHTML = '';
-      cityHeading.innerText = data.name + ', ' + data.sys.country;
-      weatherContainer.appendChild(cityHeading);
-    } else {
-      weatherContainer.innerHTML = '';
+      if (data.name) {
+        weatherContainer.innerHTML = '';
+        cityHeading.innerText = data.name + ', ' + data.sys.country;
+      }
     }
+
+    if (data.cod === '404' || data.code === '400') {
+      console.log(data.message);
+      // return;
+    }
+  } catch (err) {
+    console.log('No weather data found for the provided city.');
   }
 }
 getWeather('Whitby');
 
-searchBar.addEventListener('keyup', () => {
+submitButton.addEventListener('click', (e) => {
+  e.preventDefault();
   getWeather(searchBar.value);
 });
