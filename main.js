@@ -84,7 +84,7 @@ function renderData(data) {
   <img src="http://openweathermap.org/img/w/${icon}.png" alt="${weather} icon." />
   <h2 class="weather-description">${weather}</h2>
   <h2>Feels Like: ${feelsLikeTemp}&deg;C</h2>
-  <h2>Humidity: ${humidity}</h2>
+  <h2>Humidity: ${humidity}%</h2>
   <h2>Wind: ${(wind * 3.6).toFixed(2)} KM/H</h2>
   `;
 

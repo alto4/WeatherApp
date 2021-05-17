@@ -87,3 +87,50 @@ nav input {
   font-size: 40px;
 }
 
+@media(max-width: 900px) {
+  .weather-container {
+    padding: 0 100px;
+    margin: 10px auto;
+    width: 100%;
+    text-align: center;
+  }
+
+  .temperature {
+    position: relative;
+    top: 0;
+    padding: 0px;
+    margin: 0;
+    text-align: center;
+    left: 0;
+  }
+
+  nav {
+    display: block; 
+    text-align: center;
+  }
+
+  nav h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  nav .city-name {
+    margin: 50px auto 0;
+    font-size: 40px;
+  }
+
+  nav form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 30px auto;
+  }
+  
+  nav input {
+    width: auto;
+  }
+
+  .weather-container h1:nth-child(2) {
+    display: none;
+  }
+}
