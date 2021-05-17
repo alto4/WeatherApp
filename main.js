@@ -53,6 +53,7 @@ function processWeatherData(data) {
   let city = data.name;
   let date = new Date().toLocaleString().split(',')[0];
   let weather = data.weather[0].main;
+  let icon = data.weather[0].icon;
   let temp = data.main.temp;
   let feelsLikeTemp = data.main.feels_like;
   let humidity = data.main.humidity;
@@ -62,6 +63,7 @@ function processWeatherData(data) {
     city,
     date,
     weather,
+    icon,
     temp,
     feelsLikeTemp,
     humidity,
@@ -92,10 +94,11 @@ async function getForcast(city) {
 }
 
 function renderData(data) {
-  let { city, date, weather, temp, feelsLikeTemp, humidity, wind } = data;
+  let { city, icon, date, weather, temp, feelsLikeTemp, humidity, wind } = data;
 
   weatherContainer.innerHTML = `
   <h1>${city}</h1>
+  <img src="http://openweathermap.org/img/w/${icon}.png" alt="${weather} icon." />
   <h2>${weather}</h2>
   <h2>Temperature: ${temp}&deg;C</h2>
   <h2>Feels Like: ${feelsLikeTemp}&deg;C</h2>
