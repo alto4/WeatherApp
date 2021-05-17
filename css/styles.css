@@ -40,4 +40,6 @@ nav input {
   margin: auto;
 }
 
-
+.weather-container {
+  margin: 150px 23%;
+}
