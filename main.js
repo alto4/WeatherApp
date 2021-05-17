@@ -33,7 +33,7 @@ async function getCurrentWeather(city) {
 
     let weatherData = processWeatherData(data);
     console.log('HERES AN OVERVIEW OF DATA RETRIEVED AS AN OBJECT:');
-    console.table(weatherData);
+    // console.table(weatherData);
     renderData(weatherData);
   } catch (err) {
     console.log('No weather data found for the provided city.');
@@ -48,7 +48,7 @@ submitButton.addEventListener('click', (e) => {
 
 function processWeatherData(data) {
   console.log('THIS IS DA DATA MAN: ');
-  console.table(data);
+  //console.table(data);
 
   let city = data.name;
   let date = new Date().toLocaleString().split(',')[0];
@@ -73,6 +73,11 @@ function processWeatherData(data) {
   return weatherData;
 }
 
+function processForecastData(data) {
+  console.clear();
+  console.log('PROCESSING FORECAST DATA HERE');
+  console.table(data.list);
+}
 async function getForcast(city) {
   try {
     const res = await fetch(
@@ -87,7 +92,7 @@ async function getForcast(city) {
       // return;
     }
 
-    processData(data);
+    processForecastData(data);
   } catch (err) {
     console.log('No weather data found for the provided city.');
   }
@@ -105,4 +110,39 @@ function renderData(data) {
   <h2>Humidity: ${humidity}</h2>
   <h2>Wind: ${(wind * 3.6).toFixed(2)} KM/H</h2>
   `;
+}
+
+function evaluateBackgroundImage(weather) {
+  let body = document.querySelector('body');
+
+  switch (weather.toLowerCase()) {
+    case 'clouds':
+      console.log('CLOUD IMAGE HERE');
+      body.style.background = `linear-gradient(
+        rgba(0, 0, 0, .78), 
+        rgba(0, 0, 0, .99)
+      ), url('./images/cloudy.jpg')`;
+      break;
+    case 'clear':
+      console.log('CLEAR IMAGE HERE');
+      body.style.background = `linear-gradient(
+        rgba(0, 0, 0, .78), 
+        rgba(0, 0, 0, .99)
+      ), url('./images/clear.jpg')`;
+      break;
+    case 'snow':
+      console.log('SNOW IMAGE HERE');
+      body.style.background = `linear-gradient(
+        rgba(0, 0, 0, .78), 
+        rgba(0, 0, 0, .99)
+      ), url('./images/snow.jpg')`;
+      break;
+    default:
+      console.log('default image here');
+      body.style.background = `linear-gradient(
+        rgba(0, 0, 0, .78), 
+        rgba(0, 0, 0, .99)
+      ), url('./images/earth.jpg')`;
+      break;
+  }
 }
